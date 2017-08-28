@@ -241,6 +241,9 @@
         return ConversationController.getOrCreateAndWait(id, 'private')
             .then(function(conversation) {
                 return new Promise(function(resolve, reject) {
+                    if (details.profileKey) {
+                      conversation.set({profileKey: profileKey});
+                    }
                     conversation.save({
                         name: details.name,
                         avatar: details.avatar,
